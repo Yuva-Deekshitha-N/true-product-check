@@ -1,6 +1,5 @@
-
 import { useNavigate } from 'react-router-dom';
-import { Shield, Shield, Package, Database, AlertTriangle, Barcode, CheckCircle2 } from 'lucide-react';
+import { Shield, Package, Database, AlertTriangle, Barcode, CheckCircle2 } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
 import MainLayout from '@/components/layout/MainLayout';
