@@ -19,12 +19,13 @@ const walletManager = new WalletManager({
     },
   ],
   defaultNetwork: NetworkId.TESTNET,
-  // Replace nodeConfig with network property which is part of WalletManagerConfig
-  network: {
-    name: NetworkId.TESTNET,
-    algodToken: '', // No token needed for most basic operations
-    algodServer: 'https://mainnet-api.algonode.cloud', // Free public API service
-    algodPort: ''
+  // Use networks property instead of network
+  networks: {
+    [NetworkId.TESTNET]: {
+      algodToken: '', // No token needed for most basic operations
+      algodServer: 'https://mainnet-api.algonode.cloud', // Free public API service
+      algodPort: ''
+    }
   }
 });
 
