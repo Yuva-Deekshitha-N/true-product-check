@@ -22,12 +22,16 @@ const walletManager = new WalletManager({
   // Using the correct networks property with proper configuration
   networks: {
     [NetworkId.TESTNET]: {
-      nodeServer: 'https://testnet-api.algonode.cloud',
-      nodeToken: '',
-      nodePort: '',
-      indexerServer: 'https://testnet-idx.algonode.cloud',
-      indexerToken: '',
-      indexerPort: '',
+      algod: {
+        server: 'https://testnet-api.algonode.cloud',
+        port: '',
+        token: ''
+      },
+      indexer: {
+        server: 'https://testnet-idx.algonode.cloud',
+        port: '',
+        token: ''
+      }
     }
   }
 });
