@@ -6,6 +6,7 @@ import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { AuthProvider } from "./contexts/AuthContext";
 import { ProductProvider } from "./contexts/ProductContext";
+import { WalletProviders } from "./components/wallet/WalletProviders";
 
 // Pages
 import Index from "./pages/Index";
@@ -23,26 +24,28 @@ const queryClient = new QueryClient();
 const App = () => (
   <QueryClientProvider client={queryClient}>
     <TooltipProvider>
-      <AuthProvider>
-        <ProductProvider>
-          <Toaster />
-          <Sonner />
-          <BrowserRouter>
-            <Routes>
-              <Route path="/" element={<Index />} />
-              <Route path="/login" element={<Login />} />
-              <Route path="/register" element={<Register />} />
-              <Route path="/verify" element={<VerifyProduct />} />
-              <Route path="/scan" element={<ScanProduct />} />
-              <Route path="/report" element={<ReportFake />} />
-              <Route path="/admin/products" element={<AdminProducts />} />
-              <Route path="/admin/reports" element={<AdminReports />} />
-              {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
-              <Route path="*" element={<NotFound />} />
-            </Routes>
-          </BrowserRouter>
-        </ProductProvider>
-      </AuthProvider>
+      <WalletProviders>
+        <AuthProvider>
+          <ProductProvider>
+            <Toaster />
+            <Sonner />
+            <BrowserRouter>
+              <Routes>
+                <Route path="/" element={<Index />} />
+                <Route path="/login" element={<Login />} />
+                <Route path="/register" element={<Register />} />
+                <Route path="/verify" element={<VerifyProduct />} />
+                <Route path="/scan" element={<ScanProduct />} />
+                <Route path="/report" element={<ReportFake />} />
+                <Route path="/admin/products" element={<AdminProducts />} />
+                <Route path="/admin/reports" element={<AdminReports />} />
+                {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
+                <Route path="*" element={<NotFound />} />
+              </Routes>
+            </BrowserRouter>
+          </ProductProvider>
+        </AuthProvider>
+      </WalletProviders>
     </TooltipProvider>
   </QueryClientProvider>
 );
