@@ -26,18 +26,36 @@ const ConnectWalletModal = ({
           description: "Wallet set as active",
         });
       } else {
+        // For Pera wallet, we need to handle the connection a bit differently
         await wallet.connect();
-        toast({
-          title: "Success",
-          description: "Wallet connected successfully",
-        });
+        
+        // Since connection can be asynchronous, especially for mobile wallets like Pera
+        // we display a more informative message
+        if (wallet.id === 'pera') {
+          toast({
+            title: "Connection Initiated",
+            description: "Please approve the connection in the Pera Wallet app",
+          });
+        } else {
+          toast({
+            title: "Success",
+            description: "Wallet connected successfully",
+          });
+        }
       }
       onClose();
     } catch (error) {
-      console.error(error);
+      console.error("Wallet connection error:", error);
+      // More descriptive error message
+      let errorMessage = "Failed to connect wallet";
+      
+      if (error instanceof Error) {
+        errorMessage = error.message || errorMessage;
+      }
+      
       toast({
         title: "Error",
-        description: "Failed to connect wallet",
+        description: errorMessage,
         variant: "destructive",
       });
     }
@@ -56,10 +74,16 @@ const ConnectWalletModal = ({
       });
       onClose();
     } catch (error) {
-      console.error(error);
+      console.error("Wallet disconnection error:", error);
+      let errorMessage = "Failed to disconnect wallets";
+      
+      if (error instanceof Error) {
+        errorMessage = error.message || errorMessage;
+      }
+      
       toast({
         title: "Error",
-        description: "Failed to disconnect wallets",
+        description: errorMessage,
         variant: "destructive",
       });
     }
