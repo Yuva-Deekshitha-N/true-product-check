@@ -19,12 +19,15 @@ const walletManager = new WalletManager({
     },
   ],
   defaultNetwork: NetworkId.TESTNET,
-  // Use networks property instead of network
+  // Using the correct networks property with proper configuration
   networks: {
     [NetworkId.TESTNET]: {
-      algodToken: '', // No token needed for most basic operations
-      algodServer: 'https://mainnet-api.algonode.cloud', // Free public API service
-      algodPort: ''
+      nodeServer: 'https://testnet-api.algonode.cloud',
+      nodeToken: '',
+      nodePort: '',
+      indexerServer: 'https://testnet-idx.algonode.cloud',
+      indexerToken: '',
+      indexerPort: '',
     }
   }
 });
