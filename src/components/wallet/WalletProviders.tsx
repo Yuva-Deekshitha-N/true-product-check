@@ -6,12 +6,7 @@ import type React from "react";
 const walletManager = new WalletManager({
   wallets: [
     WalletId.DEFLY,
-    {
-      id: WalletId.PERA,
-      options: {
-        shouldShowSignTxnToast: false, // Disable default toasts as we have our own
-      },
-    },
+    WalletId.PERA,
     WalletId.EXODUS,
     {
       id: WalletId.LUTE,
@@ -19,17 +14,6 @@ const walletManager = new WalletManager({
     },
   ],
   defaultNetwork: NetworkId.TESTNET,
-  // Using the correct networks property with proper configuration
-  networks: {
-    [NetworkId.TESTNET]: {
-      nodeServer: 'https://testnet-api.algonode.cloud',
-      nodeToken: '',
-      nodePort: '',
-      indexerServer: 'https://testnet-idx.algonode.cloud',
-      indexerToken: '',
-      indexerPort: '',
-    }
-  }
 });
 
 export function WalletProviders({ children }: { children: React.ReactNode }) {
